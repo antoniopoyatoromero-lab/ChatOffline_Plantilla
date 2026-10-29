@@ -10,11 +10,8 @@ import java.util.List;
 @XmlRootElement(name = "usuarios")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ListaUsuarios {
-
-    @XmlElement(name = "usuario")
     private List<Usuario> usuarios;
 
-    // Constructor vacío obligatorio para JAXB
     public ListaUsuarios() {
         this.usuarios = new ArrayList<>();
     }
