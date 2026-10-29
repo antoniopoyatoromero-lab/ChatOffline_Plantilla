@@ -1,27 +1,68 @@
 package es.iesfranciscodelosrios.chat;
 
+import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
+
+import java.io.File;
 
 public class GestorXML {
-    // TODO Fase 1: guardar usuarios.xml usando JAXB (Marshaller).
+
     public void guardarUsuarios(ListaUsuarios usuarios) throws JAXBException {
-        throw new UnsupportedOperationException("Pendiente: guardarUsuarios");
+        File archivo = new File("usuario.xml");
+
+        JAXBContext context = JAXBContext.newInstance(ListaUsuarios.class);
+
+        Marshaller marshaller = context.createMarshaller();
+
+        marshaller.marshal(usuarios, archivo);
     }
 
-    // TODO Fase 1: recuperar usuarios.xml usando JAXB (Unmarshaller).
-    // Si no existe el archivo, devolver una ListaUsuarios vacía.
     public ListaUsuarios leerUsuarios() throws JAXBException {
-        throw new UnsupportedOperationException("Pendiente: leerUsuarios");
+        File archivo = new File("usuario.xml");
+
+        JAXBContext context = JAXBContext.newInstance(ListaUsuarios.class);
+
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+
+        ListaUsuarios usuarios;
+
+        if (!archivo.exists()){
+            usuarios = new ListaUsuarios();
+        } else {
+            usuarios = (ListaUsuarios) unmarshaller.unmarshal(archivo);
+        }
+
+        return usuarios;
     }
 
-    // TODO Fase 2: guardar mensajes.xml usando JAXB.
     public void guardarMensajes(ListaMensajes mensajes) throws JAXBException {
+        File archivo = new File("mensaje.xml");
+
+        JAXBContext context = JAXBContext.newInstance(ListaMensajes.class);
+
+        Marshaller marshaller = context.createMarshaller();
+
+        marshaller.marshal(mensajes, archivo);
         throw new UnsupportedOperationException("Pendiente: guardarMensajes");
     }
 
-    // TODO Fase 2: recuperar mensajes.xml usando JAXB.
-    // Si no existe el archivo, devolver una ListaMensajes vacía.
     public ListaMensajes leerMensajes() throws JAXBException {
-        throw new UnsupportedOperationException("Pendiente: leerMensajes");
+        File archivo = new File("mensaje.xml");
+
+        JAXBContext context = JAXBContext.newInstance(ListaMensajes.class);
+
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+
+        ListaMensajes mensajes;
+
+        if (!archivo.exists()){
+            mensajes = new ListaMensajes();
+        } else {
+            mensajes = (ListaMensajes) unmarshaller.unmarshal(archivo);
+        }
+
+        return mensajes;
     }
 }

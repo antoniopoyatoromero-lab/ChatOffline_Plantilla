@@ -1,6 +1,10 @@
 package es.iesfranciscodelosrios.chat;
 
+import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
+
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
@@ -11,6 +15,7 @@ public class GestorChat {
 
     // TODO Fase 1: comprobar duplicados y registrar el usuario en XML.
     public void registrarUsuario(String nombre) throws JAXBException {
+
         throw new UnsupportedOperationException("Pendiente: registrarUsuario");
     }
 
