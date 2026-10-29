@@ -1,5 +1,8 @@
 package es.iesfranciscodelosrios.chat;
 
+import jakarta.xml.bind.JAXBException;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {

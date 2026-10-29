@@ -10,6 +10,21 @@ import java.util.List;
 @XmlRootElement(name = "usuarios")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ListaUsuarios {
-    // TODO: Programar la lista de usuarios.
+    private List<Usuario> usuarios;
 
+    public ListaUsuarios() {
+        this.usuarios = new ArrayList<>();
+    }
+
+    public ListaUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
 }
