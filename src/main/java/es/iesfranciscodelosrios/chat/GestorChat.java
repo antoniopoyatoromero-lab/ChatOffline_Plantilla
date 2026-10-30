@@ -153,19 +153,18 @@ public class GestorChat {
                 throw new IllegalArgumentException("Extensión de archivo no permitida: " + extension);
             }
 
-            File carpetaMedia = new File("C:\\Users\\Usuario\\IdeaProjects\\ChatOffline_Plantilla2\\src\\main\\prueba");
+            File carpetaMedia = new File("media");
             if (!carpetaMedia.exists()) {
                 boolean creada = carpetaMedia.mkdirs();
                 if (creada) {
-                    System.out.println("Se ha creado la carpeta 'prueba' correctamente.");
+                    System.out.println("Se ha creado la carpeta media correctamente");
                 }
             } else {
-                System.out.println("La carpeta 'prueba' ya existía previamente.");
+                System.out.println("La carpeta media ya existía");
             }
 
             File archivoDestino = new File(carpetaMedia, nombreArchivo);
 
-            // Copia binaria del fichero
             try (FileInputStream in = new FileInputStream(origenFile);
                  FileOutputStream out = new FileOutputStream(archivoDestino)) {
 

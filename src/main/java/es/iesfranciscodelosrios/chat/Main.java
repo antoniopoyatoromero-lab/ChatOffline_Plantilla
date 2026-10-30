@@ -79,13 +79,31 @@ public class Main {
                     break;
 
                 case 6:
-                    System.out.println("Introduce el nombre del usuario");
+                    System.out.print("Introduce el emisor del mensaje al que adjuntar: ");
                     usuario = teclado.nextLine();
-                    System.out.println("Introduce el nombre del usuario del que quieres guardar la conversacion");
+                    System.out.print("Introduce el destinatario: ");
                     destinatario = teclado.nextLine();
-                    System.out.println("Indica la ruta del archivo");
-                    ruta = teclado.nextLine();
-                    chat.exportarConversacion(usuario,destinatario, Path.of(ruta));
+                    System.out.print("Introduce el mensaje al que quieres adjuntar: ");
+                    String contenidoBuscado = teclado.nextLine();
+
+                    List<Mensaje> conversacion = chat.consultarConversacion(usuario, destinatario);
+                    Mensaje mensajeEncontrado = null;
+                    boolean encontrado = false;
+
+                    for (Mensaje m : conversacion) {
+                        if (!encontrado && m.getContenido().equals(contenidoBuscado)) {
+                            mensajeEncontrado = m;
+                            encontrado = true;
+                        }
+                    }
+
+                    if (mensajeEncontrado != null) {
+                        System.out.print("Indica la ruta del archivo a adjuntar: ");
+                        String rutaArchivo = teclado.nextLine();
+                        chat.adjuntarArchivo(mensajeEncontrado, Path.of(rutaArchivo));
+                    } else {
+                        System.out.println("Error: No se ha encontrado ningún mensaje con ese contenido entre esos usuarios.");
+                    }
                     break;
             }
         }while(opciones!=0);
