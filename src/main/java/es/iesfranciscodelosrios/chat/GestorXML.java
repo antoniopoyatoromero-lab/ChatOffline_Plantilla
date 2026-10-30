@@ -9,7 +9,9 @@ import java.io.File;
 
 public class GestorXML {
 
-    public void guardarUsuarios(ListaUsuarios usuarios) throws JAXBException {
+    public void guardarUsuarios(ListaUsuarios usuarios) {
+        try {
+
         File archivo = new File("usuario.xml");
 
         JAXBContext context = JAXBContext.newInstance(ListaUsuarios.class);
@@ -17,9 +19,14 @@ public class GestorXML {
         Marshaller marshaller = context.createMarshaller();
 
         marshaller.marshal(usuarios, archivo);
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public ListaUsuarios leerUsuarios() throws JAXBException {
+    public ListaUsuarios leerUsuarios() {
+        try {
+
         File archivo = new File("usuario.xml");
 
         JAXBContext context = JAXBContext.newInstance(ListaUsuarios.class);
@@ -35,9 +42,15 @@ public class GestorXML {
         }
 
         return usuarios;
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void guardarMensajes(ListaMensajes mensajes) throws JAXBException {
+    public void guardarMensajes(ListaMensajes mensajes) {
+        try {
+
+
         File archivo = new File("mensaje.xml");
 
         JAXBContext context = JAXBContext.newInstance(ListaMensajes.class);
@@ -45,24 +58,29 @@ public class GestorXML {
         Marshaller marshaller = context.createMarshaller();
 
         marshaller.marshal(mensajes, archivo);
-        throw new UnsupportedOperationException("Pendiente: guardarMensajes");
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public ListaMensajes leerMensajes() throws JAXBException {
+    public ListaMensajes leerMensajes()  {
         File archivo = new File("mensaje.xml");
 
-        JAXBContext context = JAXBContext.newInstance(ListaMensajes.class);
+        try {
+            JAXBContext context = JAXBContext.newInstance(ListaMensajes.class);
 
-        Unmarshaller unmarshaller = context.createUnmarshaller();
+            Unmarshaller unmarshaller = context.createUnmarshaller();
 
-        ListaMensajes mensajes;
+            ListaMensajes mensajes;
 
-        if (!archivo.exists()){
-            mensajes = new ListaMensajes();
-        } else {
-            mensajes = (ListaMensajes) unmarshaller.unmarshal(archivo);
+            if (!archivo.exists()){
+                mensajes = new ListaMensajes();
+            } else {
+                mensajes = (ListaMensajes) unmarshaller.unmarshal(archivo);
+            }
+            return mensajes;
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
         }
-
-        return mensajes;
     }
 }
